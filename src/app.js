@@ -4,6 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const passport = require('passport');
+const authenticate = require('./authentication');
 
 // version and author from our package.json file
 const { version, author } = require('../package.json');
@@ -64,6 +66,16 @@ app.use((err, req, res, next) => {
     },
   });
 });
+
+// Use gzip/deflate compression middleware
+app.use(compression());
+
+// Set up our passport authentication middleware
+passport.use(authenticate.strategy());
+app.use(passport.initialize());
+
+// Define our routes
+app.use('/', require('./routes'));
 
 // Export our `app` so we can access it in server.js
 module.exports = app;
