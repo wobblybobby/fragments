@@ -7,7 +7,7 @@ const app = require('../../src/app');
 
 describe('/ health check', () => {
   test('should return HTTP 404 response', async () => {
-    const res = await request(app).get('/');
+    const res = await request(app).get('/testLine39');
     expect(res.statusCode).toBe(404);
   });
 
