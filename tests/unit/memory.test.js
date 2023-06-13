@@ -51,7 +51,7 @@ describe('memory/index calls', () => {
     expect(await deleteFragment(data.ownerId, data.id));
 
     // Check if fragment is deleted
-    expect(await readFragment(data.ownerId, data.id)).toBeUndefined();
-    expect(await readFragmentData(data.ownerId, data.id)).toBeUndefined();
+    expect(await readFragment(data.ownerId, data.id)).toBe(undefined);
+    expect(await readFragmentData(data.ownerId, data.id)).toBe(undefined);
   });
 });
