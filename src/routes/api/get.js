@@ -5,20 +5,6 @@
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 
-/**
- * Get a list of fragments for the current user
- */
- module.exports = (req, res) => {
-  // TODO: this is just a placeholder to get something working...
-  const data = { fragments: [] };
-  const successResponse = createSuccessResponse(data);
-  res.status(200).json(successResponse);
-
-  // res.status(200).json({
-  //   status: 'ok',
-  //   fragments: [],
-  // });
-
 module.exports = async (req, res) => {
   try {
     // let frags = [];
@@ -31,3 +17,15 @@ module.exports = async (req, res) => {
     res.status(400).json(createErrorResponse("User's fragments not found"));
   }
 };
+
+// module.exports = (req, res) => {
+//   // TODO: this is just a placeholder to get something working...
+//   const data = { fragments: [] };
+//   const successResponse = createSuccessResponse(data);
+//   res.status(200).json(successResponse);
+
+//   // res.status(200).json({
+//   //   status: 'ok',
+//   //   fragments: [],
+//   // });
+// };
