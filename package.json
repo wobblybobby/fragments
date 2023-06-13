@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/ashiun/fragments.git"
   },
-  "author": "Bobby",
+  "author": "Bobby <bli120@myseneca.ca>",
   "license": "UNLICENSED",
   "devDependencies": {
     "cross-env": "^7.0.3",

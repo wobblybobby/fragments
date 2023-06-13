@@ -1,12 +1,14 @@
 // src/routes/api/get.js
 
 // Refactor to use response.js functions
-const { createSuccessResponse } = require('../../response');
+// const logger = require('../../logger');
+const { createSuccessResponse, createErrorResponse } = require('../../response');
+const { Fragment } = require('../../model/fragment');
 
 /**
  * Get a list of fragments for the current user
  */
-module.exports = (req, res) => {
+ module.exports = (req, res) => {
   // TODO: this is just a placeholder to get something working...
   const data = { fragments: [] };
   const successResponse = createSuccessResponse(data);
@@ -16,4 +18,16 @@ module.exports = (req, res) => {
   //   status: 'ok',
   //   fragments: [],
   // });
+
+module.exports = async (req, res) => {
+  try {
+    // let frags = [];
+    // frags = await Fragment.byUser(req.user, true);
+    // res.status(200).json(createSuccessResponse({ frags }));
+    const data = { fragments: await Fragment.byUser(req.user, false) };
+    const successResponse = createSuccessResponse(data);
+    res.status(200).json(successResponse);
+  } catch (error) {
+    res.status(400).json(createErrorResponse("User's fragments not found"));
+  }
 };
