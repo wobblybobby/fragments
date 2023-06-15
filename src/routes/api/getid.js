@@ -7,7 +7,7 @@ const { Fragment } = require('../../model/fragment');
 
 module.exports = async (req, res) => {
   try {
-    const data = { fragments: await Fragment.byId(req.user, req.query.id) };
+    const data = { fragments: await Fragment.byId(req.user, req.params.id) };
     const successResponse = createSuccessResponse(data);
     res.status(200).json(successResponse);
   } catch (error) {

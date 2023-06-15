@@ -15,7 +15,7 @@ describe('GET /v1/fragments', () => {
     const id = JSON.parse(res.text).fragment.id;
 
     await request(app)
-      .get('/v1/fragments?id=' + id)
+      .get('/v1/fragments/' + id)
       .expect(401);
   });
 
@@ -29,7 +29,7 @@ describe('GET /v1/fragments', () => {
     const id = JSON.parse(res.text).fragment.id;
 
     await request(app)
-      .get('/v1/fragments?id=' + id)
+      .get('/v1/fragments/' + id)
       .auth('invalid@email.com', 'incorrect_password')
       .expect(401);
   });
@@ -42,8 +42,9 @@ describe('GET /v1/fragments', () => {
       .set({ 'Content-Type': 'text/plain' })
       .send('Text/plain test');
     const id = JSON.parse(res.text).fragment.id;
+
     const res2 = await request(app)
-      .get('/v1/fragments?id=' + id)
+      .get('/v1/fragments/' + id)
       .auth('user1@email.com', 'password1');
     expect(res2.statusCode).toBe(200);
     expect(res2.body.status).toBe('ok');
