@@ -12,11 +12,23 @@ describe('POST /v1/fragments', () => {
   test('incorrect credentials are denied', () =>
     request(app).post('/v1/fragments').auth('invalid@email.com', 'incorrect_password').expect(401));
 
-  // Using a valid username/password pair should give a success result with a .fragments array
-  // test('authenticated users get a fragments array', async () => {
-  //   const res = await request(app).post('/v1/fragments').auth('user1@email.com', 'password1');
-  //   expect(res.statusCode).toBe(200);
-  //   expect(res.body.status).toBe('ok');
-  //   expect(Array.isArray(res.body.fragments)).toBe(true);
-  // });
+  test('incorrect type test', async () => {
+    const res = await request(app)
+      .post('/v1/fragments')
+      .auth('user1@email.com', 'password1')
+      .set({ 'Content-Type': 'text/xml' })
+      .send('text/xml type test');
+    expect(res.statusCode).toBe(415);
+    expect(res.body.status).toBe('error');
+  });
+
+  test('text/plain test', async () => {
+    const res = await request(app)
+      .post('/v1/fragments')
+      .auth('user1@email.com', 'password1')
+      .set({ 'Content-Type': 'text/plain' })
+      .send('Text/plain test');
+    expect(res.statusCode).toBe(201);
+    expect(JSON.parse(res.text).status).toBe('ok');
+  });
 });
