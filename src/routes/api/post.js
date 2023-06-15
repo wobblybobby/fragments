@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       const frag = new Fragment({ ownerId: req.user, type: req.get('Content-Type') });
       await frag.save();
       await frag.setData(req.body);
-      res.set('Location', API_URL + '/v1/fragments/' + frag.id);
+      res.set('Location', API_URL + '/v1/fragments?id=' + frag.id);
       res.set('Content-Type', frag.type);
 
       res.status(201).json(
