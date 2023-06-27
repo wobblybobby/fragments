@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Use node version 18.13.0
-FROM node:18.16.0
+FROM node:18.16.0-alpine3.17@sha256:4a55308cc855cba1a925d19ae4e45838741dad2fd7bb8949a93b2a0f2ae339e3 AS dependencies
 
 LABEL maintainer="Bobby Li <bli120@myseneca.ca>"
 LABEL description="Fragments node.js microservice"
@@ -35,8 +35,19 @@ COPY package*.json ./
 # files.  All of the files will be copied into the working dir `./app`
 COPY package.json package-lock.json ./
 
-# Install node dependencies defined in package-lock.json
-RUN npm install
+# # Install node dependencies defined in package-lock.json
+# RUN npm install
+# Enforce only production dependencies are installed
+RUN npm ci --only=production
+
+##############################################################
+
+FROM node:18.16.0-alpine3.17@sha256:4a55308cc855cba1a925d19ae4e45838741dad2fd7bb8949a93b2a0f2ae339e3 AS production
+
+# Use /app as our working directory
+WORKDIR /app
+
+COPY --from=dependencies /app /app
 
 # Copy src to /app/src/
 COPY ./src ./src
@@ -49,3 +60,4 @@ CMD npm start
 
 # We run our service on port 8080
 EXPOSE 8080
+
