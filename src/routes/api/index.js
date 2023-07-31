@@ -15,4 +15,6 @@ router.get('/fragments', require('./get'));
 
 router.get('/fragments/:id', require('./getid'));
 
+router.get('/fragments/:id/info', require('./getinfo'));
+
 module.exports = router;

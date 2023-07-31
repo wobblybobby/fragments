@@ -21,7 +21,13 @@ class Fragment {
 
     if (typeof size != 'number' || size < 0) throw "Size isn't a number";
 
-    if (type != 'text/plain' && type != 'text/plain; charset=utf-8') throw "Type isn't text/plain";
+    if (
+      type != 'text/plain' &&
+      type != 'text/plain; charset=utf-8' &&
+      type != 'text/*' &&
+      type != 'application/json'
+    )
+      throw 'Incorrect type.';
 
     if (!created) {
       created = new Date().toISOString();
@@ -155,7 +161,7 @@ class Fragment {
   get isText() {
     // TODO
     const { type } = contentType.parse(this.type);
-    if (type == 'text/plain') {
+    if (type == 'text/plain' || type == 'text/plain; charset=utf-8' || type == 'text/*') {
       return true;
     } else {
       return false;
@@ -169,7 +175,14 @@ class Fragment {
   get formats() {
     // TODO
     const formats = [];
-    formats.push(contentType.format({ type: 'text/plain' }));
+    // formats.push(contentType.format({ type: 'text/plain' }));
+    if (this.mimeType == 'text/plain') {
+      formats.push(contentType.format({ type: 'text/plain' }));
+    } else if (this.mimeType == 'application/json') {
+      formats.push(contentType.format({ type: 'application/json' }));
+    } else {
+      formats.push(contentType.format({ type: 'text/*' }));
+    }
     return formats;
     // return [contentType.format({ type: 'text/plain' })];
   }
@@ -181,7 +194,12 @@ class Fragment {
    */
   static isSupportedType(value) {
     // TODO
-    if (value == 'text/plain' || value == 'text/plain; charset=utf-8') {
+    if (
+      value == 'text/plain' ||
+      value == 'text/plain; charset=utf-8' ||
+      value == 'text/*' ||
+      value == 'application/json'
+    ) {
       return true;
     } else {
       return false;
