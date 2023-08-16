@@ -11,6 +11,9 @@ const router = express.Router();
 const { Fragment } = require('../model/fragment');
 const contentType = require('content-type');
 
+// Get hostname
+const { hostname } = require('os');
+
 // Refactor to use response.js functions
 // const { createSuccessResponse } = require('../response');
 // const data = { author, githubUrl: 'https://github.com/ashiun/fragments', version };
@@ -19,6 +22,7 @@ const successResponse = require('../response').createSuccessResponse({
   author,
   githubUrl: 'https://github.com/ashiun/fragments',
   version,
+  hostname: hostname(),
 });
 
 // Our authentication middleware
