@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     const successResponse = createSuccessResponse(data);
     res.status(200).json(successResponse);
   } catch (error) {
-    res.status(400).json(createErrorResponse("User's fragments not found"));
+    res.status(404).json(createErrorResponse("User's fragments not found"));
   }
 };
 

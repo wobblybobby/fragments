@@ -51,6 +51,6 @@ module.exports = async (req, res) => {
       res.status(415).json(createErrorResponse('Unsupported type'));
     }
   } catch (error) {
-    res.status(400).json(createErrorResponse('Fragment not found'));
+    res.status(404).json(createErrorResponse('Fragment not found'));
   }
 };

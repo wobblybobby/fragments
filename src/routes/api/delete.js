@@ -1,17 +1,15 @@
-// src/routes/api/getinfo.js
+// src/routes/api/delete.js
 
 // Refactor to use response.js functions
 // const logger = require('../../logger');
-
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 
 module.exports = async (req, res) => {
   try {
-    const data = { fragments: await Fragment.byId(req.user, req.params.id) };
-    const successResponse = createSuccessResponse(data);
-    res.status(200).json(successResponse);
+    await Fragment.delete(req.user, req.params.id);
   } catch (error) {
-    res.status(404).json(createErrorResponse('Fragment not found'));
+    return res.status(404).json(createErrorResponse('Fragments not found'));
   }
+  return res.status(200).json(createSuccessResponse());
 };
