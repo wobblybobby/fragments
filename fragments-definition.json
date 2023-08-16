@@ -28,7 +28,7 @@
       "environment": [
         {
           "name": "AWS_ACCESS_KEY_ID",
-          "value": "ASIA6KOCHUTPEOLC2UOF"
+          "value": "ASIA6KOCHUTPFBERE4EA"
         },
         {
           "name": "AWS_COGNITO_CLIENT_ID",
@@ -48,11 +48,11 @@
         },
         {
           "name": "AWS_SECRET_ACCESS_KEY",
-          "value": "9QKG3bw0LG7MBu1W5O/oK8aDtSQywLkSR4mj72ZS"
+          "value": "auvTS15Cq7swcIkLLg/kbYLWiiuqqZjfjThH/pOH"
         },
         {
           "name": "AWS_SESSION_TOKEN",
-          "value": "FwoGZXIvYXdzELj//////////wEaDEEi86RN26l90z+MHyK6AX6PtZByYcCwpJ8ZE5c4QsNeh2XI4+Zv9jpzeZWTJXpsZitWcuAksbK4fejgQxwAUQRKjhDDI5wKJzVs+j3TlW9gb3zlVI+rtng5tlZeUrJWNv2ReSAOQs2cvkOttEJxcLr/efZ2CqWWbnvEUjjftz9WciuTkTgD1mTdryy/fKFNM5J0wXb0LbMP+hSAS4vuO3JLhpaAS6R/TIjF+JcRG01FD2w97bhd2NMyfw1oIEcYRC6ssXa4dROQKSiUwPOmBjItb+8UmFkd+Eo0bzge4Kcw83fclNco6qVmbxGmKVxNyIV7C9Fbqo3vJ14aFATn"
+          "value": "FwoGZXIvYXdzELz//////////wEaDHM0fRQ5eaQvZ6f8NiK6ASh1NWqIIl11XvyeUHB4Gd424dnHNDxcBwBBR7lblhB34d80uWIGaZc8NEpBwWFjcX5ImZ3fgCGDu6pRbTD2dk72IDT0dBPWbcArTFMv5LTxFk3RwLl0mrEWHh98UDQoB9ULADiwvVBpNdlqAxRe34DB6YK11+/3m755e8SNMMoZmqj7LUQRjGPpBjs+JNYFpJMQukSxovajI54PbsvCMJP2mFGVIciqqFQh+0KmRhxQuPINWBN3V7eI2iiZsfSmBjItgVOWnHhhAbF4+Ri1SH5sZkdCFuZqUsvwLoJAgHkd/11dtT9a/K43AvWNIfeE"
         },
         {
           "name": "PORT",
