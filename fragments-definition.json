@@ -25,7 +25,40 @@
       "command": [],
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [],
+      "environment": [
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "value": "ASIA6KOCHUTPEOLC2UOF"
+        },
+        {
+          "name": "AWS_COGNITO_CLIENT_ID",
+          "value": "t6eargfj9khmvnip6ut16fdkn"
+        },
+        {
+          "name": "AWS_COGNITO_POOL_ID",
+          "value": "us-east-1_kie2BCnSi"
+        },
+        {
+          "name": "AWS_DEFAULT_REGION",
+          "value": "us-east-1"
+        },
+        {
+          "name": "AWS_REGION",
+          "value": "us-east-1"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "value": "9QKG3bw0LG7MBu1W5O/oK8aDtSQywLkSR4mj72ZS"
+        },
+        {
+          "name": "AWS_SESSION_TOKEN",
+          "value": "FwoGZXIvYXdzELj//////////wEaDEEi86RN26l90z+MHyK6AX6PtZByYcCwpJ8ZE5c4QsNeh2XI4+Zv9jpzeZWTJXpsZitWcuAksbK4fejgQxwAUQRKjhDDI5wKJzVs+j3TlW9gb3zlVI+rtng5tlZeUrJWNv2ReSAOQs2cvkOttEJxcLr/efZ2CqWWbnvEUjjftz9WciuTkTgD1mTdryy/fKFNM5J0wXb0LbMP+hSAS4vuO3JLhpaAS6R/TIjF+JcRG01FD2w97bhd2NMyfw1oIEcYRC6ssXa4dROQKSiUwPOmBjItb+8UmFkd+Eo0bzge4Kcw83fclNco6qVmbxGmKVxNyIV7C9Fbqo3vJ14aFATn"
+        },
+        {
+          "name": "PORT",
+          "value": "8080"
+        }
+      ],
       "resourceRequirements": null,
       "ulimits": null,
       "dnsServers": null,
