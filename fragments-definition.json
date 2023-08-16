@@ -49,6 +49,10 @@
         {
           "name": "PORT",
           "value": "8080"
+        },
+        {
+          "name": "AWS_S3_BUCKET_NAME",
+          "value": "bli120-fragments"
         }
       ],
       "resourceRequirements": null,
@@ -84,7 +88,7 @@
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": null,
+  "taskRoleArn": "arn:aws:iam::984491730142:role/LabRole",
   "compatibilities": ["EC2", "FARGATE"],
   "taskDefinitionArn": "arn:aws:ecs:us-east-1:984491730142:task-definition/fragments-task:9",
   "family": "fragments-task",
