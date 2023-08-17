@@ -1,6 +1,4 @@
-# Post Authorized text "Hello S3!"
-
-# Authenticated POST to /v1/fragments
+# 1. Authenticated POST to /v1/fragments
 POST http://localhost:8080/v1/fragments
 # We're sending a plain text fragment
 Content-Type: application/json
@@ -10,7 +8,7 @@ user1@email.com:password1
 # Body of the request goes in ```...``` when it's a string
 `This is a fragment!`
 
-# 1. We expect to get back an HTTP 201
+# 2. We expect to get back an HTTP 201
 HTTP/1.1 201
 # We have various assertions about the response that we want to check
 [Asserts]
@@ -32,7 +30,7 @@ jsonpath "$.fragment.size" == 19
 [Captures]
 url: header "Location"
 
-# 2. Try to GET the fragment we just posted by its URL
+# 3. Try to GET the fragment we just posted by its URL
 GET {{url}}
 [BasicAuth]
 user1@email.com:password1
@@ -43,21 +41,14 @@ Content-Length: 19
 [Asserts]
 body == "This is a fragment!"
 
-# ================================================================================================================
-# Delete the created fragment
-
-# 2. Try to Delete the fragment by its URL
+# 4. Try to Delete the fragment by its URL
 DELETE {{url}}
 [BasicAuth]
 user1@email.com:password1
 
 HTTP/1.1 200
 
-
-# ================================================================================================================
-#Try to get the deleted fragment
-
-# 2. Try to GET the fragment we just posted by its URL
+# 5. Try to GET the fragment we just posted by its URL
 GET {{url}}
 [BasicAuth]
 user1@email.com:password1
