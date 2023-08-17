@@ -182,21 +182,28 @@ class Fragment {
    */
   get formats() {
     // TODO
-    const formats = [
-      'text/plain',
-      'text/plaint; charset=utf-8',
-      'text/markdown',
-      'text/html',
-      'text/*',
-      'application/json',
-    ];
-    // if (this.mimeType == 'text/plain') {
-    //   formats.push(contentType.format({ type: 'text/plain' }));
-    // } else if (this.mimeType == 'application/json') {
-    //   formats.push(contentType.format({ type: 'application/json' }));
-    // } else {
-    //   formats.push(contentType.format({ type: 'text/*' }));
-    // }
+    // const formats = [
+    //   'text/plain',
+    //   'text/plain; charset=utf-8',
+    //   'text/markdown',
+    //   'text/html',
+    //   'text/*',
+    //   'application/json',
+    // ];
+    const formats = [];
+    if (this.mimeType == 'text/plain') {
+      formats.push(contentType.format({ type: 'text/plain' }));
+    } else if (this.mimeType == 'text/plain; charset=utf-8') {
+      formats.push(contentType.format({ type: 'text/plain; charset=utf-8' }));
+    } else if (this.mimeType == 'text/markdown') {
+      formats.push(contentType.format({ type: 'text/markdown' }));
+    } else if (this.mimeType == 'text/html') {
+      formats.push(contentType.format({ type: 'text/html' }));
+    } else if (this.mimeType == 'text/*') {
+      formats.push(contentType.format({ type: 'text/*' }));
+    } else if (this.mimeType == 'application/json') {
+      formats.push(contentType.format({ type: 'application/json' }));
+    }
     return formats;
   }
 

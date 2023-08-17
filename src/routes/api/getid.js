@@ -60,10 +60,13 @@ module.exports = async (req, res) => {
           res.status(415).json(createErrorResponse('Unsupported type or conversion'));
         }
         break;
-      default:
+      case '':
         fragment = new Fragment(await Fragment.byId(req.user, req.params.id));
         data = await fragment.getData();
         res.setHeader('Content-Type', fragment.type);
+        break;
+      default:
+        res.status(415).json(createErrorResponse('Unsupported type'));
     }
     return res.status(200).send(data);
   } catch (error) {
