@@ -24,6 +24,8 @@ class Fragment {
     if (
       type != 'text/plain' &&
       type != 'text/plain; charset=utf-8' &&
+      type != 'text/markdown' &&
+      type != 'text/html' &&
       type != 'text/*' &&
       type != 'application/json'
     )
@@ -161,7 +163,13 @@ class Fragment {
   get isText() {
     // TODO
     const { type } = contentType.parse(this.type);
-    if (type == 'text/plain' || type == 'text/plain; charset=utf-8' || type == 'text/*') {
+    if (
+      type == 'text/plain' ||
+      type == 'text/plain; charset=utf-8' ||
+      type == 'text/markdown' ||
+      type == 'text/html' ||
+      type == 'text/*'
+    ) {
       return true;
     } else {
       return false;
@@ -174,17 +182,22 @@ class Fragment {
    */
   get formats() {
     // TODO
-    const formats = [];
-    // formats.push(contentType.format({ type: 'text/plain' }));
-    if (this.mimeType == 'text/plain') {
-      formats.push(contentType.format({ type: 'text/plain' }));
-    } else if (this.mimeType == 'application/json') {
-      formats.push(contentType.format({ type: 'application/json' }));
-    } else {
-      formats.push(contentType.format({ type: 'text/*' }));
-    }
+    const formats = [
+      'text/plain',
+      'text/plaint; charset=utf-8',
+      'text/markdown',
+      'text/html',
+      'text/*',
+      'application/json',
+    ];
+    // if (this.mimeType == 'text/plain') {
+    //   formats.push(contentType.format({ type: 'text/plain' }));
+    // } else if (this.mimeType == 'application/json') {
+    //   formats.push(contentType.format({ type: 'application/json' }));
+    // } else {
+    //   formats.push(contentType.format({ type: 'text/*' }));
+    // }
     return formats;
-    // return [contentType.format({ type: 'text/plain' })];
   }
 
   /**
@@ -197,6 +210,8 @@ class Fragment {
     if (
       value == 'text/plain' ||
       value == 'text/plain; charset=utf-8' ||
+      value == 'text/markdown' ||
+      value == 'text/html' ||
       value == 'text/*' ||
       value == 'application/json'
     ) {

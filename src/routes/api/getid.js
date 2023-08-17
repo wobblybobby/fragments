@@ -16,41 +16,57 @@
 //   }
 // };
 
+// console.log('--------------' + path.basename(req.params.id));
+// console.log('--------------' + path.extname(req.params.id));
+// console.log('--------------' + path.basename(req.params.id, path.extname(req.params.id)));
+// data = data.toString();
+// console.log('---------------------------------' + typeof data);
+// console.log('_________________________________' + data);
+// const successResponse = createSuccessResponse(data);
+// res.send(data);
+
+// let fragment;
+// let data;
+// try {
+//   fragment = new Fragment(await Fragment.byId(req.user, req.params.id));
+//   data = await fragment.getData();
+// } catch (error) {
+// return res.status(404).json(createErrorResponse('Fragment not found'));
+// }
+// res.setHeader('Content-Type', fragment.type);
+// res.setHeader('Content-Length', fragment.size);
+// return res.status(200).send(data);
+
 const { createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 var md = require('markdown-it')();
 var path = require('path');
 
 module.exports = async (req, res) => {
+  let fragment;
+  let data;
   try {
-    if (path.extname(req.params.id) == '.html') {
-      // console.log('--------------' + path.basename(req.params.id));
-      // console.log('--------------' + path.extname(req.params.id));
-      // console.log('--------------' + path.basename(req.params.id, path.extname(req.params.id)));
-      try {
-        const fragment = await Fragment.byId(
-          req.user,
-          path.basename(req.params.id, path.extname(req.params.id))
-        );
-        const data = await fragment.getData();
-        var result = md.render(data.toString());
-        res.status(200).setHeader('Content-Type', 'text/html').send(result);
-      } catch (error) {
-        res.status(415).json(createErrorResponse('Unsupported type or conversion'));
-      }
-    } else if (path.extname(req.params.id) == '') {
-      const fragment = await Fragment.byId(req.user, req.params.id);
-      const data = await fragment.getData();
-      // data = data.toString();
-      // console.log('---------------------------------' + typeof data);
-      // console.log('_________________________________' + data);
-      // const successResponse = createSuccessResponse(data);
-      // res.send(data);
-      res.status(200).setHeader('Content-Type', fragment.type).send(data);
-    } else {
-      res.status(415).json(createErrorResponse('Unsupported type'));
+    switch (path.extname(req.params.id)) {
+      case '.html':
+        try {
+          const fragment = await Fragment.byId(
+            req.user,
+            path.basename(req.params.id, path.extname(req.params.id))
+          );
+          data = await fragment.getData();
+          data = md.render(data.toString());
+          res.setHeader('Content-Type', 'text/html');
+        } catch (error) {
+          res.status(415).json(createErrorResponse('Unsupported type or conversion'));
+        }
+        break;
+      default:
+        fragment = new Fragment(await Fragment.byId(req.user, req.params.id));
+        data = await fragment.getData();
+        res.setHeader('Content-Type', fragment.type);
     }
+    return res.status(200).send(data);
   } catch (error) {
-    res.status(404).json(createErrorResponse('Fragment not found'));
+    return res.status(404).json(createErrorResponse('Fragment not found'));
   }
 };
