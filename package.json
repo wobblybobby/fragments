@@ -1,7 +1,7 @@
 {
   "name": "fragments",
   "private": "true",
-  "version": "0.9.5",
+  "version": "0.10.0",
   "description": "ccp555",
   "main": "index.js",
   "scripts": {
