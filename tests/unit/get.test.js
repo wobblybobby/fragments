@@ -45,7 +45,7 @@ describe('GET /v1/fragments', () => {
     const id = JSON.parse(res.text).fragment.id;
 
     const res2 = await request(app)
-      .get('/v1/fragments/' + id + '.png')
+      .get('/v1/fragments/' + id + '.xml')
       .auth('user1@email.com', 'password1');
     expect(res2.statusCode).toBe(415);
   });

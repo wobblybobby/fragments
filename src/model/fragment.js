@@ -27,7 +27,11 @@ class Fragment {
       type != 'text/markdown' &&
       type != 'text/html' &&
       type != 'text/*' &&
-      type != 'application/json'
+      type != 'application/json' &&
+      type != 'image/png' &&
+      type != 'image/jpeg' &&
+      type != 'image/webp' &&
+      type != 'image/gif'
     )
       throw 'Incorrect type.';
 
@@ -203,7 +207,16 @@ class Fragment {
       formats.push(contentType.format({ type: 'text/*' }));
     } else if (this.mimeType == 'application/json') {
       formats.push(contentType.format({ type: 'application/json' }));
+    } else if (this.mimeType == 'image/png') {
+      formats.push(contentType.format({ type: 'image/png' }));
+    } else if (this.mimeType == 'image/jpeg') {
+      formats.push(contentType.format({ type: 'image/jpeg' }));
+    } else if (this.mimeType == 'image/webp') {
+      formats.push(contentType.format({ type: 'image/webp' }));
+    } else if (this.mimeType == 'image/gif') {
+      formats.push(contentType.format({ type: 'image/gif' }));
     }
+
     return formats;
   }
 
@@ -220,7 +233,11 @@ class Fragment {
       value == 'text/markdown' ||
       value == 'text/html' ||
       value == 'text/*' ||
-      value == 'application/json'
+      value == 'application/json' ||
+      value == 'image/png' ||
+      value == 'image/jpeg' ||
+      value == 'image/webp' ||
+      value == 'image/gif'
     ) {
       return true;
     } else {
